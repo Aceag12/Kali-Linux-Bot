@@ -31,7 +31,7 @@ async def status_task():
         await asyncio.sleep(5)
         await client.change_presence(game=discord.Game(name="for =help"))
         await asyncio.sleep(5)
-        await client.change_presence(game=discord.Game(name="AI Chat"), status=discord.Status("idle"))
+        await client.change_presence(game=discord.Game(name="in LINUX"), status=discord.Status("idle"))
         await asyncio.sleep(5)
 
 @client.event
