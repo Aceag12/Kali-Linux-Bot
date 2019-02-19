@@ -163,45 +163,9 @@ async def setupserver(ctx):
     await client.create_channel(server, 'chat-for-staffs',private)
     await client.create_channel(server, 'server-logs',private)
     await client.say('I have done setup!')
-@client.command(pass_context=True)
-@commands.has_permissions(kick_members=True)
-async def join(ctx):
-    author = ctx.message.author
-    channel = author.voice_channel
-    await client.join_voice_channel(channel)
-    await client.say("``Voice Connected!``")
-@client.command(pass_context = True)
-async def play(ctx, *, url):
-    author = ctx.message.author
-    voice_channel = author.voice_channel
-    try:
-        vc = await client.join_voice_channel(voice_channel)
-        msg = await client.say("``Loading your song...``")
-        player = await vc.create_ytdl_player("ytsearch:" + url)
-        player.start()
-        await client.say("**Playing...**")
-        await client.delete_message(msg)
-    except Exception as e:
-        print(e)
-        await client.say("**Reconnecting voice..**")
-        for x in client.voice_clients:
-            if(x.server == ctx.message.server):
-                await x.disconnect()
-                nvc = await client.join_voice_channel(voice_channel)
-                msg = await client.say("Loading a song...")
-                player2 = await nvc.create_ytdl_player("ytsearch:" + url)
-                player2.start()
-
-@client.command(pass_context = True)
-async def leave(ctx):
-    for x in client.voice_clients:
-        if(x.server == ctx.message.server):
-            await client.say("``Voice Disconnected!``")
-            return await x.disconnect()
 
 @client.command(pass_context=True)  
 @commands.has_permissions(kick_members=True)     
-
 async def serverinfo(ctx):
 
     server = ctx.message.server
@@ -508,7 +472,11 @@ async def virus(ctx,user: discord.Member=None,*,hack=None):
 @client.command(pass_context = True)
 async def invite(ctx):
         embed=discord.Embed(title="**GLAD TO JOIN YOUR SERVER**", description="https://discordapp.com/api/oauth2/authorize?client_id=545585329990795274&permissions=2146958591&scope=bot".format(ctx.message.author), color=0xff00f6)
-        await client.say(embed=embed)         
+        await client.say(embed=embed)    
+@client.command(pass_context = True)
+async def serverinvite(ctx):
+        embed=discord.Embed(title="**JOIN OUR SUPPORT SERVER**", description="https://discord.gg/aERFDKP".format(ctx.message.author), color=0xff00f6)
+        await client.say(embed=embed)	
 @client.command(pass_context = True)
 async def botinfo(ctx):
         embed=discord.Embed(title="**INFO**", description="**Name- KALI**\n**Creator- Allipsters**\n\n**Bot Type- Public**\n**API- Discord.py**\n**command prefix- =**\n**For help- =help**\n**invite me by- =invite**".format(ctx.message.author), color=0x7289da)
@@ -792,6 +760,15 @@ async def daily():
     return
 @client.command(pass_context = True)
 async def work():
+    return
+@client.command(pass_context = True)
+async def join():
+    return
+@client.command(pass_context = True)
+async def play():
+    return
+@client.command(pass_context = True)
+async def leave():
     return
 
 @client.command(pass_context=True)
