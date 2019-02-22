@@ -119,17 +119,6 @@ async def hack(ctx,user: discord.Member=None,*,hack=None):
     else:
         await client.say('**{}** has hacked himself ¯\_(ツ)_/¯.'.format(name.name))
         await client.send_message(name,'**Alert!**\n``You are hacked. Change your passwords right now.``'.format(hack))
-@client.event
-async def on_message(message):
-    user = message.author
-    if message.author.bot:
-      return
-    else:
-      if message.author.server_permissions.administrator:
-          return
-      if ('🖕') in message.content:
-          msg = '***:white_check_mark: Alright! {0.author.mention} Has Been Warned for Using Inappropriate Emoji.***'.format(message)
-          await client.send_message(message.channel, msg)
 	
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
