@@ -108,6 +108,11 @@ async def hack(ctx,user: discord.Member=None,*,hack=None):
     else:
         await client.say('**{}** has hacked himself ¯\_(ツ)_/¯.'.format(name.name))
         await client.send_message(name,'**Alert!**\n``You are hacked. Change your passwords right now.``'.format(hack))
+
+@client.command(pass_context=True)
+async def serverlist(ctx):
+    servers = ', '.join([i.name for i in client.servers]).strip(', ')
+    await client.say('**I am currently on these servers:**\n ```bf\n{}```'.format(servers))
 	
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
