@@ -199,9 +199,16 @@ async def deletechannel(ctx, channel: discord.Channel=None):
             await client.say("{} channel has been deleted.".format(channel.name))
 
         
-@client.command(pass_context=True)
+@client.command(pass_context = True)
 async def ping(ctx):
-    await client.say("Pong!") 
+    if ctx.message.author.bot:
+      return
+    else:
+      channel = ctx.message.channel
+      t1 = time.perf_counter()
+      await client.send_typing(channel)
+      t2 = time.perf_counter()
+      await client.say("PONG:`` {}ms ``:hourglass_flowing_sand:".format(round((t2-t1)*1000)))
     
 @client.command(pass_context = True)
 async def roll(ctx):
