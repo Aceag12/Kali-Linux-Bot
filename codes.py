@@ -306,9 +306,6 @@ async def say(ctx, *, msg = None):
     return
 @client.command(pass_context = True)
 async def upvote(ctx):
-    if ctx.message.author.bot:
-      return
-    else:
 	embed=discord.Embed(title="**__VOTE ME HERE__**", description="``https://discordbots.org/bot/545585329990795274/vote``".format(ctx.message.author), color=0xff00f6)
         await client.say(embed=embed)
 @client.command(pass_context = True)
