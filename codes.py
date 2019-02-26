@@ -305,7 +305,7 @@ async def say(ctx, *, msg = None):
     else: await client.say(msg)
     return
 @client.command(pass_context = True)
-async def ping(ctx):
+async def upvote(ctx):
     if ctx.message.author.bot:
       return
     else:
