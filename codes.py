@@ -352,11 +352,11 @@ async def setupsuggestion(ctx):
 async def on_member_join(member):
     for channel in member.server.channels:
         if channel.name == '★彡-welcome-bye彡★':
-            embed = discord.Embed(title=f'Welcome {member.name} to {member.server.name}', description='Do not forget to check #rules and never try to break any one of them. Thank You.', color = 0x36393E)
+            embed = discord.Embed(title=f'Welcome **{member.name}** to **{member.server.name}**', description='Do not forget to check rules and never try to break any one of them. Thank You.', color = 0x36393E)
             embed.add_field(name='__Thanks for joining__', value='**Hope you will be active here.**', inline=True)
-            embed.set_thumbnail(url='https://media.giphy.com/media/jF1oqkXJL0Mda/giphy.gif') 
+            embed.set_thumbnail(url=member.avatar_url) 
             embed.add_field(name='__Join position__', value='{}'.format(str(member.server.member_count)), inline=True)
-            embed.add_field(name='Time of joining', value=member.joined_at)
+            embed.add_field(name='__Time of joining__', value=member.joined_at)
             await asyncio.sleep(0.4)
             await client.send_message(channel, embed=embed)
 @client.command(pass_context=True)
