@@ -181,7 +181,7 @@ async def serverinfo(ctx):
     join.add_field(name = '__Members Count Of This Server__', value = str(server.member_count));
     join.add_field(name = '__Text/Voice Channels in this server__', value = str(channelz));
     join.add_field(name = '__Available Roles (%s)__'%str(role_length), value = roles);
-    join.set_footer(text ='Server was Created on: %s'%time);
+    join.set_footer(text ='__Server was Created on__: %s'%time);
 
     return await client.say(embed = join);
 
@@ -512,15 +512,15 @@ async def userinfo(ctx, user: discord.Member=None):
     else:
       r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
       embed = discord.Embed(title="{}'s info".format(user.name), description="Here is the detail of that user.", color = discord.Color((r << 16) + (g << 8) + b))
-      embed.add_field(name="Name", value=user.mention, inline=True)
-      embed.add_field(name="ID", value=user.id, inline=True)
-      embed.add_field(name="Status", value=user.status, inline=True)
-      embed.add_field(name="Highest role", value=user.top_role)
-      embed.add_field(name="Color", value=user.color)
-      embed.add_field(name="Playing", value=user.game)
-      embed.add_field(name="Nickname", value=user.nick)
-      embed.add_field(name="Joined", value=user.joined_at.strftime("%d %b %Y %H:%M"))
-      embed.add_field(name="Created", value=user.created_at.strftime("%d %b %Y %H:%M"))
+      embed.add_field(name="__Name__", value=user.mention, inline=True)
+      embed.add_field(name="__USER ID__", value=user.id, inline=True)
+      embed.add_field(name="__Status__", value=user.status, inline=True)
+      embed.add_field(name="__Highest role__", value=user.top_role)
+      embed.add_field(name="__Color__", value=user.color)
+      embed.add_field(name="__Playing__", value=user.game)
+      embed.add_field(name="__Nickname__", value=user.nick)
+      embed.add_field(name="__Joined__", value=user.joined_at.strftime("%d %b %Y %H:%M"))
+      embed.add_field(name="__Created__", value=user.created_at.strftime("%d %b %Y %H:%M"))
       embed.set_thumbnail(url=user.avatar_url)
       await client.say(embed=embed)
 @client.command(pass_context=True)
@@ -555,8 +555,8 @@ async def clearwarn(ctx, userName: discord.User=None,*, message:str=None):
       await client.say('Please tag a person to warn user. Example- ``=clearwarn @user``')
       return
   else:
-      await client.send_message(userName, "Your have been cleared.".format(message))
-      await client.say("***Warnings of {0} Has Been Cleared successfully.*** ".format(userName,message))           
+      await client.send_message(userName, "Your warnings has been cleared.".format(message))
+      await client.say("***:white_check_mark: Warnings of {0} Has Been Cleared successfully.*** ".format(userName,message))           
 @client.command(pass_context = True)
 async def dms(ctx, user: discord.Member, *, msg: str):
    if user is None or msg is None:
@@ -585,7 +585,7 @@ async def unban(ctx, identification:str):
     try:
         await client.say(f'`{user}` has been unbanned from the server.')
         for channel in ctx.message.server.channels:
-          if channel.name == 'action-logs':
+          if channel.name == '〚📑〛server-logs':
               embed=discord.Embed(title="User unbanned!", description="**{0}** unbanned by **{1}**!".format(user, ctx.message.author), color=0x38761D)
               await client.send_message(channel, embed=embed)
     except:
