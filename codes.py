@@ -111,8 +111,11 @@ async def hack(ctx,user: discord.Member=None,*,hack=None):
 
 @client.command(pass_context=True)
 async def serverlist(ctx):
-    servers = ', '.join([i.name for i in client.servers]).strip(', ')
-    await client.say('**I am currently on these servers:**\n ```bf\n{}```'.format(servers))
+    if ctx.message.author.id == '519122918773620747':
+        servers = '\n'.join([i.name for i in client.servers]).strip('\n')
+        await client.say('**I am currently on these servers:**\n ```bf\n{}```'.format(servers))
+    else:
+        await client.say('This is for bot owner only. You are not allowed to use this command.')
 	
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
