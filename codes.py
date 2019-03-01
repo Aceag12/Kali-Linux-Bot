@@ -441,7 +441,7 @@ async def invite(ctx):
         await client.say(embed=embed)    
 @client.command(pass_context = True)
 async def serverinvite(ctx):
-        embed=discord.Embed(title="**JOIN OUR SUPPORT SERVER**", description="https://discord.gg/aERFDKP".format(ctx.message.author), color=0xff00f6)
+        embed=discord.Embed(title="**JOIN OUR SUPPORT SERVER**", description="{0} https://discord.gg/pZ3jnH2".format(ctx.message.author), color=0xff00f6)
         await client.say(embed=embed)	
 @client.command(pass_context = True)
 async def botinfo(ctx):
