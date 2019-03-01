@@ -314,28 +314,12 @@ async def help(ctx):
       r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
       embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
       embed.set_author(name='Help')
-      embed.add_field(name = '**__HELP CENTER__**',value ='```My Prefix is = and my Commands are as follows:-\n-ADMIN COMMANDS \n setupserver [TO SETUP SERVER]\n setupwelcome [TO SETUP WELCOMER] \n addchannel [TO CREATE NEW CHANNEL]\n deletechannel [TO DELETE CHANNEL]\n userinfo [FOR INFO ABOUT MENTIONED USER]\n serverinfo [INFO OF THE SERVER]\n addrole [TO ADD ROLE]\n-MODERATION COMMANDS\n warn [WARN MENTIONED USER]\n mute[MUTE SPECIFIC USER]\n ban [BAN SPECIFIC USER]\n kick [KICK MENTIONED USER]\n-FUN COMMANDS\n howgay [GAY PERCENTAGE]\n toss [FLIP A COIN]\n roll [ROLL DICE]\n charliecharlie [PLAY CHARLIECHARLIE GAME]\n hack [PRANK YOUR FRIENDS BY HACKING]\n virus [PRANK YOUR FRIENDS BY INJECTING VIRUS]\n meme [PROVIDES RANDOM MEME]\n tweet [TWEET SOMETHING]\n-ECONOMY & RANK\n rank [CHECK YOUR RANK]\n coins [CHECK YOUR COINS]\n-OTHER COMMANDS\n say [MAKE OUR BOT TO SAY YOUR TEXT]\n botinfo [INFO OF KALI LINUX]\n invite [FOR BOT INVITATION LINK]\n invites [CHECK YOUR INVITES]\n reminder [TO MAKE BOT REMIND YOU SOMETHING]\n serverinvite [INVITATION LINK OF OUR OFFICIAL SERVER] ```',inline = False)
+      embed.add_field(name = '***__HELP CENTER OF KALI LINUX BOT__***',value ='``My Prefix is = and my Commands are as follows:-``\n**-ADMIN COMMANDS** \n setupserver [TO SETUP SERVER]\n setupwelcome [TO SETUP WELCOMER] \n addchannel [TO CREATE NEW CHANNEL]\n deletechannel [TO DELETE CHANNEL]\n userinfo [FOR INFO ABOUT MENTIONED USER]\n serverinfo [INFO OF THE SERVER]\n addrole [TO ADD ROLE]\n**-MODERATION COMMANDS**\n warn [WARN MENTIONED USER]\n mute[MUTE SPECIFIC USER]\n ban [BAN SPECIFIC USER]\n kick [KICK MENTIONED USER]\n**-FUN COMMANDS**\n howgay [GAY PERCENTAGE]\n toss [FLIP A COIN]\n roll [ROLL DICE]\n charliecharlie [PLAY CHARLIECHARLIE GAME]\n hack [PRANK YOUR FRIENDS BY HACKING]\n virus [PRANK YOUR FRIENDS BY INJECTING VIRUS]\n meme [PROVIDES RANDOM MEME]\n tweet [TWEET SOMETHING `eg: =tweet <username> message`]\n**-ECONOMY & RANK**\n rank [CHECK YOUR RANK]\n coins [CHECK YOUR COINS]\n**-OTHER COMMANDS**\n say [MAKE OUR BOT TO SAY YOUR TEXT]\n botinfo [INFO OF KALI LINUX]\n invite [FOR BOT INVITATION LINK]\n invites [CHECK YOUR INVITES]\n reminder [TO MAKE BOT REMIND YOU SOMETHING]\n serverinvite [INVITATION LINK OF SUPPORT SERVER]',inline = False)
       dmmessage = await client.send_message(author,embed=embed)
       msg = (':incoming_envelope: Check your DMs For Information')
       await client.say(msg)
-      await asyncio.sleep(30)
+      await asyncio.sleep(40)
       await client.delete_message(dmmessage)
-@client.command(pass_context = True)
-async def announce(ctx, channel: discord.Channel=None, *, msg: str=None):
-    member = ctx.message.author
-    if channel is None or msg is None:
-        await client.say('Invalid Command. Use this command like ``=announce text here``')
-        return
-    else:
-        if member.server_permissions.administrator == False:
-            await client.say('**You do not have permission to use this command**')
-            return
-        else:
-            r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-            embed=discord.Embed(title="Announcement", description="{}".format(msg), color = discord.Color((r << 16) + (g << 8) + b))
-            await client.send_message(channel, embed=embed)
-            await client.delete_message(ctx.message)
-            
 @client.command(pass_context = True)
 async def setupsuggestion(ctx):
     if ctx.message.author.bot:
@@ -403,7 +387,7 @@ async def deleterole(ctx,*, role: discord.Role = None):
     if discord.utils.get(ctx.message.server.roles, name="{}".format(role)) is None:
         await client.say("There is no role with this name in this server")
     if ctx.message.author.server_permissions.manage_roles == False:
-        await client.say('**You do not have permission to use this command**')
+        await client.say('**Sorry! You do not have permission to use this command**')
         return
     else:
         await client.delete_role(ctx.message.server, role)
@@ -415,7 +399,7 @@ async def on_member_remove(member):
             r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
             embed = discord.Embed(title=f'**{member.name}** just left **{member.server.name}**', description='Bye bye! We will miss you.', color = discord.Color((r << 16) + (g << 8) + b))
             embed.add_field(name='__User left__', value='**Hope you will be back soon.**', inline=True)
-            embed.add_field(name='__Your join position was__', value=member.joined_at)
+            embed.add_field(name='__Your Join position Was__', value='{}'.format(str(member.server.member_count)), inline=True)
             embed.set_thumbnail(url=member.avatar_url)
             await client.send_message(channel, embed=embed)        
 @client.command(pass_context=True)
