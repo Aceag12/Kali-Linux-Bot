@@ -309,20 +309,23 @@ async def say(ctx, *, msg = None):
     return
 
 @client.command(pass_context = True)
-async def help(ctx):
+async def helpkali(ctx):
     if ctx.message.author.bot:
       return
     else:
       author = ctx.message.author
       r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
       embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-      embed.set_author(name='Help')
-      embed.add_field(name = '**Help Center**',value ='```We will change help format soon\nMy Prefix is = and my Commands are as follows:-\n announce\n rank \n reminder\n coins \n purge <1-100>(ADMIN)\n botinfo\n ban(ADMIN)\n clearwarn(ADMIN)\n warn(ADMIN)\n kick(ADMIN)\n mute(ADMIN)\n unmute(ADMIN)\n charliecharlie \n userinfo(ADMIN)\n meme \n ping \n toss \n roll \n howgay \n hack \n virus \n addrole(ADMIN)\n deleterole(ADMIN)\n addchannel(ADMIN)\n tweet \n deletechannel(ADMIN)\n setnick(ADMIN)\n resetnick(ADMIN)\n invite-For inviting me to your server\n setupwelcome-To Setup Welcomer(ADMIN)\n say\n serverinvite-Link Of my official server\n invites\n serverinfo```',inline = False)
+      embed.set_author(name='HELP CENTER OF KALI LINUX BOT')
+      embed.add_field(name = '**Prefix** `=`',value ='\n**__ADMIN COMMANDS__** \n setupserver [TO SETUP SERVER]\n setupwelcome [TO SETUP WELCOMER] \n addchannel [TO CREATE NEW CHANNEL]\n deletechannel [TO DELETE CHANNEL]\n userinfo [FOR INFO ABOUT USER]\n serverinfo [INFO OF THE SERVER]\n addrole [TO ADD ROLE]\n**__MODERATION COMMANDS__**\n warn [WARN USER]\n mute[MUTE USER]\n ban [BAN USER]\n kick [KICK USER]\n unban [UNBAN USER]\n**__FUN COMMANDS__**\n howgay [GAY PERCENTAGE]\n toss [FLIP A COIN]\n roll [ROLL DICE]\n charliecharlie [PLAY CHARLIECHARLIE GAME]\n hack [PRANK YOUR FRIENDS]\n virus [PRANK YOUR FRIENDS]\n meme [RANDOM MEME]\n tweet [TWEET `eg: =tweet <username> message`]\n**__ECONOMY & RANK__**\n rank [CHECK RANK]\n coins [CHECK COINS]\n**__OTHER COMMANDS__**\n say [MAKE BOT TO SAY TEXT]\n botinfo [INFO OF KALI LINUX]\n invite [BOT INVITATION LINK]\n invites [CHECK YOUR INVITES]\n reminder [TO REMIND YOU SOMETHING]\n serverinvite [INVITATION LINK OF SUPPORT SERVER]',inline = False)
+      embed.set_footer(text=f'Requested by: {ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
       dmmessage = await client.send_message(author,embed=embed)
-      msg = (':incoming_envelope: Check your DMs For Information')
+      msg = (':incoming_envelope: *Check your DMs For Help Informations.*')
+      await client.send_typing(ctx.message.channel)
       await client.say(msg)
       await asyncio.sleep(30)
       await client.delete_message(dmmessage)
+	
 @client.command(pass_context = True)
 async def setupsuggestion(ctx):
     if ctx.message.author.bot:
