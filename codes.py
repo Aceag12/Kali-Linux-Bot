@@ -608,12 +608,12 @@ async def poll(ctx, question, *options: str):
 @client.command(pass_context = True)
 async def meme(ctx):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-    embed = discord.Embed(title='**__LINUX MEME__**', description='RANDOM MEME BY LINUX:', color = discord.Color((r << 16) + (g << 8) + b))
+    embed = discord.Embed(title='**__LINUX MEME__**', description='**RANDOM MEME BY LINUX:**', color = discord.Color((r << 16) + (g << 8) + b))
     async with aiohttp.ClientSession() as session:
         async with session.get("https://api.reddit.com/r/me_irl/random") as r:
             data = await r.json()
             embed.set_image(url=data[0]["data"]["children"][0]["data"]["url"])
-            embed.set_footer(text=f'REQUEST MADE BY: {ctx.message.author.display_name} TO LINUX FOR MEME', icon_url=f'{ctx.message.author.avatar_url}')
+            embed.set_footer(text=f'REQUEST MADE BY:-> {ctx.message.author.display_name} <-TO LINUX FOR MEME', icon_url=f'{ctx.message.author.avatar_url}')
             embed.timestamp = datetime.datetime.utcnow()
             await client.say(embed=embed)
 @client.command(pass_context = True)
