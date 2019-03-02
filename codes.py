@@ -309,7 +309,7 @@ async def say(ctx, *, msg = None):
     return
 
 @client.command(pass_context = True)
-async def helpkali(ctx):
+async def help(ctx):
     if ctx.message.author.bot:
       return
     else:
