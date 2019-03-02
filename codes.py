@@ -613,7 +613,7 @@ async def meme(ctx):
         async with session.get("https://api.reddit.com/r/me_irl/random") as r:
             data = await r.json()
             embed.set_image(url=data[0]["data"]["children"][0]["data"]["url"])
-            embed.set_footer(text=f'REQUEST MADE BY: {ctx.message.author.display_name} TO LINUX', icon_url=f'AVATAR: {ctx.message.author.avatar_url}')
+            embed.set_footer(text=f'REQUEST MADE BY: {ctx.message.author.display_name} TO LINUX FOR MEME', icon_url=f'{ctx.message.author.avatar_url}')
             embed.timestamp = datetime.datetime.utcnow()
             await client.say(embed=embed)
 @client.command(pass_context = True)
