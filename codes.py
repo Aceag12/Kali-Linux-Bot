@@ -117,7 +117,7 @@ async def serverlist(ctx):
     else:
         await client.say('This is for bot owner only. You are not allowed to use this command.')
 @client.command(pass_context = True)
-async def setupwelcome(ctx):
+async def setupchat(ctx):
     if ctx.message.author.bot:
       return
     if ctx.message.author.server_permissions.administrator == False:
