@@ -116,6 +116,18 @@ async def serverlist(ctx):
         await client.say('**I am currently on these servers:**\n ```bf\n{}```'.format(servers))
     else:
         await client.say('This is for bot owner only. You are not allowed to use this command.')
+@client.command(pass_context = True)
+async def setupwelcome(ctx):
+    if ctx.message.author.bot:
+      return
+    if ctx.message.author.server_permissions.administrator == False:
+      await client.say('**You do not have permission to use this command**')
+      return
+    else:
+      server = ctx.message.server
+      everyone_perms = discord.PermissionOverwrite(send_messages=True, read_messages=True)
+      everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
+      await client.create_channel(server, '★〚🤖〛bot-chat★',everyone)
 	
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
