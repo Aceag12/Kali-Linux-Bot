@@ -456,7 +456,7 @@ async def invite(ctx):
         await client.say(embed=embed)    
 @client.command(pass_context = True)
 async def serverinvite(ctx):
-        embed=discord.Embed(title="**JOIN OUR SUPPORT SERVER**", description="{0} https://discord.gg/pZ3jnH2".format(ctx.message.author), color=0xff00f6)
+        embed=discord.Embed(title="**JOIN OUR SUPPORT SERVER**", description="**{0}** Join here:- https://discord.gg/pZ3jnH2".format(ctx.message.author), color=0xff00f6)
         await client.say(embed=embed)	
 @client.command(pass_context = True)
 async def botinfo(ctx):
@@ -466,7 +466,7 @@ async def botinfo(ctx):
 async def kick(ctx, userName: discord.User):
     if ctx.message.author.server_permissions.administrator or ctx.message.author.id == '519122918773620747':
         await client.kick(userName)
-        embed=discord.Embed(title="**User Kicked Successfully!**", description="**The User was successfully Kicked!**".format(member, ctx.message.author), color=0xff00f6)
+        embed=discord.Embed(title="**User Kicked Successfully!**", description="**The User {0} was successfully Kicked By {1}!**".format(userName, ctx.message.author), color=0xff00f6)
         await client.say(embed=embed)
     else:
         embed=discord.Embed(title="Command not accepted!", description="Sorry! You don't have permission to use this command.", color=0xff00f6)
@@ -574,7 +574,7 @@ async def dms(ctx, user: discord.Member, *, msg: str):
 async def ban(ctx, userName: discord.User):
     if ctx.message.author.server_permissions.administrator or ctx.message.author.id == '519122918773620747':
         await client.ban(userName)
-        embed=discord.Embed(title="**User Banned Successfully!**", description="**The User was successfully Banned!**".format(member, ctx.message.author), color=0xff00f6)
+        embed=discord.Embed(title="**User Banned Successfully!**", description="**The User {0} was successfully Banned By {1}!**".format(userName, ctx.message.author), color=0xff00f6)
         await client.say(embed=embed)
     else:
         embed=discord.Embed(title="Command not accepted!", description="Sorry! You don't have permission to use this command.", color=0xff00f6)
