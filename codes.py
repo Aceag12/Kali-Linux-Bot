@@ -323,13 +323,13 @@ async def say(ctx, *, msg = None):
 async def avatar(ctx, user: discord.Member=None):
     if user is None:
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-        embed = discord.Embed(title=f'Avatar Machine', description='__Avatar of **{0}:__**'.format(ctx.message.author), color = discord.Color((r << 16) + (g << 8) + b))
+        embed = discord.Embed(title=f'Avatar Machine', description='**__Avatar of {0}:__**'.format(ctx.message.author), color = discord.Color((r << 16) + (g << 8) + b))
         embed.set_footer(text=f'Requested by: {ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         embed.set_image(url = ctx.message.author.avatar_url)
         await client.say(embed=embed)
     else:
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-        embed = discord.Embed(title=f'Avatar Machine', description="__Avatar of **{0}**:__".format(user), color = discord.Color((r << 16) + (g << 8) + b))
+        embed = discord.Embed(title=f'Avatar Machine', description="**__Avatar of {0}:__**".format(user), color = discord.Color((r << 16) + (g << 8) + b))
         embed.set_footer(text=f'Requested by: {ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         embed.set_image(url = user.avatar_url)
         await client.say(embed=embed)     
@@ -621,7 +621,7 @@ async def poll(ctx, question, *options: str):
             return
 
         if len(options) == 2 and options[0] == 'yes' and options[1] == 'no':
-            reactions = [':white_check_mark:', ':negative_squared_cross_mark:']
+            reactions = ['👍', '👎']
         else:
             reactions = ['1\u20e3', '2\u20e3', '3\u20e3', '4\u20e3', '5\u20e3', '6\u20e3', '7\u20e3', '8\u20e3', '9\u20e3', '\U0001f51f']
 
@@ -799,7 +799,17 @@ async def ytsearch(ctx, *, message: str):
     new_message = message.replace(" ", "+")
     url = f"https://www.youtube.com/results?search_query={new_message}"
     await client.say(url)        
+@client.command(pass_context=True)
+async def search(ctx, *, message: str):
+    new_message = message.replace(" ", "+")
+    url = f"https://www.google.com/search?client=firefox-b-d&q={new_message}"
+    await client.say(url)       
 
+@client.command(pass_context=True)
+async def twittersearch(ctx, *, message: str):
+    new_message = message.replace(" ", "+")
+    url = f"https://twitter.com/search?q={new_message}"
+    await client.say(url)   
 
 @client.command(pass_context=True, aliases=['server'])
 @commands.has_permissions(kick_members=True)
