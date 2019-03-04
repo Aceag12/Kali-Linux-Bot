@@ -782,17 +782,17 @@ async def reminder(ctx, time=None, *,remind=None):
 @client.command(pass_context=True)
 async def miniavatar(ctx, user:discord.Member=None):
     if user is None:
-	r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+        r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
         embed.set_author(name='User Avatar')
         embed.set_thumbnail(url = ctx.message.author.avatar_url)
         await client.send_message(ctx.message.channel, embed=embed)
     else:
-	r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-        embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-        embed.set_author(name='User Avatar')
-        embed.set_thumbnail(url = user.avatar_url)
-        await client.send_message(ctx.message.channel, embed=embed)
+       r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+       embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+       embed.set_author(name='User Avatar')
+       embed.set_thumbnail(url = user.avatar_url)
+       await client.send_message(ctx.message.channel, embed=embed)
 	
 @client.command(pass_context=True)
 async def ytsearch(ctx, *, message: str):
