@@ -335,7 +335,7 @@ async def help(ctx):
       msg = (':incoming_envelope: *Check your DMs For Help Informations.*')
       await client.send_typing(ctx.message.channel)
       await client.say(msg)
-      await asyncio.sleep(30)
+      await asyncio.sleep(60)
       await client.delete_message(dmmessage)
 	
 @client.command(pass_context = True)
