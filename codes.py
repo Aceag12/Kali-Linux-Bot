@@ -319,7 +319,21 @@ async def say(ctx, *, msg = None):
     if not msg: await client.say("**What Do You Want Me To Say?** eg:- `` =say <your text here>``")
     else: await client.say(msg)
     return
-
+@client.command(pass_context = True)
+async def avatar(ctx, user: discord.Member=None):
+    if user is None:
+        r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+        embed = discord.Embed(title=f'Avatar Machine', description='__Avatar of **{0}:__**'.format(ctx.message.author), color = discord.Color((r << 16) + (g << 8) + b))
+        embed.set_footer(text=f'Requested by: {ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        embed.set_image(url = ctx.message.author.avatar_url)
+        await client.say(embed=embed)
+    else:
+        r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+        embed = discord.Embed(title=f'Avatar Machine', description="__Avatar of **{0}**:__".format(user), color = discord.Color((r << 16) + (g << 8) + b))
+        embed.set_footer(text=f'Requested by: {ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+        embed.set_image(url = user.avatar_url)
+        await client.say(embed=embed)     
+	
 @client.command(pass_context = True)
 async def help(ctx):
     if ctx.message.author.bot:
@@ -767,12 +781,19 @@ async def reminder(ctx, time=None, *,remind=None):
     await client.send_message(ctx.message.author, "Reminder:- {}".format(remind))
 @client.command(pass_context=True)
 async def miniavatar(ctx, user:discord.Member=None):
-    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-    embed.set_author(name='User Avatar')
-    embed.set_thumbnail(url = ctx.message.author.avatar_url)
-    await client.send_message(ctx.message.channel, embed=embed)
-
+    if user is None:
+	r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+        embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+        embed.set_author(name='User Avatar')
+        embed.set_thumbnail(url = ctx.message.author.avatar_url)
+        await client.send_message(ctx.message.channel, embed=embed)
+    else:
+	r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+        embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+        embed.set_author(name='User Avatar')
+        embed.set_thumbnail(url = user.avatar_url)
+        await client.send_message(ctx.message.channel, embed=embed)
+	
 @client.command(pass_context=True)
 async def ytsearch(ctx, *, message: str):
     new_message = message.replace(" ", "+")
