@@ -339,17 +339,21 @@ async def help(ctx):
       await client.delete_message(dmmessage)
 	
 @client.command(pass_context = True)
-async def setupsuggestion(ctx):
+async def suggest(ctx, *, msg: str=None):
+    member = ctx.message.author
+    channel = member.server.get_channel('552035811428794380')
     if ctx.message.author.bot:
-      return
-    if ctx.message.author.server_permissions.administrator == False:
-      await client.say('**You do not have permission to use this command**')
-      return
+        return
+    if msg is None:
+        await client.say('**INVALID COMMANDS WERE GIVEN. USE THIS COMMAND LIKE** `=suggest <suggestions>`')
+        return
     else:
-      server = ctx.message.server
-      everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
-      everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
-      await client.create_channel(server, '彡suggestions彡',everyone)
+        r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+        embed=discord.Embed(title="**__SUGGESTIONS BY {0}__**".format(member), description="{}".format(msg), color = discord.Color((r << 16) + (g << 8) + b))
+        await client.send_message(channel, embed=embed)
+        await client.delete_message(ctx.message)
+        await client.say(':white_check_mark: ***Your Suggestions Were Sent To Bot Developers.***')
+	
 @client.event
 async def on_member_join(member):
     for channel in member.server.channels:
