@@ -766,7 +766,7 @@ async def reminder(ctx, time=None, *,remind=None):
     await client.say("Reminder: {} You told {}".format(ctx.message.author.mention, remind))
     await client.send_message(ctx.message.author, "Reminder:- {}".format(remind))
 @client.command(pass_context=True)
-async def avatar(ctx, user:discord.Member=None):
+async def miniavatar(ctx, user:discord.Member=None):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
     embed.set_author(name='User Avatar')
